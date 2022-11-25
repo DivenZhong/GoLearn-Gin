@@ -80,7 +80,8 @@ zap 实现高性能的日志组件：
 	1.自己实现 json Encoder，指明类型避免了反射，每种类型直接提供了转换 []byte + append 的函数
     2.预分配byte slice字节片段
     3.通过 sync.Pool实现对象复用，避免竞争
-	4.日志级别逻辑判断拦截，避免一切不必要的开销
+	4.日志级别逻辑判断拦截，避免一切不必要的开销	
+testify:单元测试
 redis：内存缓存
 elastic：日志收集
 JWT ：Token令牌授权和认证
