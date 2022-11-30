@@ -10,7 +10,14 @@ import (
 	"time"
 )
 
-// 验证redis
+// RdTest
+// @Summary  验证redis
+// @Tags  测试验证
+// @Accept json
+// @Produce json
+// @Param type query string true "请求类型" maxlength(15)
+// @Success 200 {string} RdTest "{"code": 0,"msg": "请求成功", "data": {}}"
+// @Router /test/redis [get]
 func RdTest(ctx *gin.Context) {
 	method, _ := ctx.GetQuery("type")
 	var result string

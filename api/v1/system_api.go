@@ -11,7 +11,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 配置信息
+// GetConfig
+// @Summary  系统配置信息
+// @Tags  系统管理
+// @Accept json
+// @Produce json
+// @Success 200 {string} GetConfig "{"code": 0,"msg": "请求成功", "data": {}}"
+// @Router /system/config [get]
 func GetConfig(ctx *gin.Context) {
 	response.OkWithData(ctx, global.GvaConfig)
 }

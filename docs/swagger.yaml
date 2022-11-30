@@ -1,0 +1,157 @@
+definitions:
+  model.User:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+      nickName:
+        type: string
+      phone:
+        type: string
+      status:
+        type: integer
+      token:
+        type: string
+      updatedAt:
+        type: string
+      userInfo:
+        $ref: '#/definitions/model.UserInfo'
+    type: object
+  model.UserInfo:
+    properties:
+      address:
+        type: string
+      birthday:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      uid:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  request.LoginParam:
+    properties:
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机
+        type: string
+    type: object
+  request.RegisterParam:
+    properties:
+      address:
+        description: 地址
+        type: string
+      birthday:
+        description: 生日
+        type: string
+      nickName:
+        description: 昵称
+        type: string
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /system/config:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            type: string
+      summary: 系统配置信息
+      tags:
+      - 系统管理
+  /test/redis:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求类型
+        in: query
+        maxLength: 15
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            type: string
+      summary: 验证redis
+      tags:
+      - 测试验证
+  /v1/user/detail:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 查询用户信息
+      tags:
+      - 用户
+  /v1/user/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: json数据
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: 用户账号密码登录
+      tags:
+      - 用户
+  /v1/user/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: json数据
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.RegisterParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: 用户注册
+      tags:
+      - 用户
+swagger: "2.0"

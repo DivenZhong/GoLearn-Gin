@@ -6,8 +6,11 @@
 package core
 
 import (
+	_ "GinDemo_v1/docs"
 	"GinDemo_v1/router"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // 注册路由入口
@@ -20,4 +23,5 @@ func RegisterRouters(engine *gin.Engine) {
 	router.InitTestRouter(engine)
 	// 注册es路由
 	router.InitESRouter(engine)
+	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }

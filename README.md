@@ -85,6 +85,7 @@ testify:单元测试
 redis：内存缓存
 elastic：日志收集
 JWT ：Token令牌授权和认证
+Swagger ：接口文档工具
 ```
 
 # 集成Grpc-go、Protobuf( https://github.com/DivenZhong/GoLearn-Grpc-Go)
