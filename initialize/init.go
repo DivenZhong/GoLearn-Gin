@@ -13,6 +13,8 @@ func InitConfig() {
 	InitGorm()
 	// 初始化redis
 	InitRedis()
+	// 初始化MongoDb
+	initMongoDb()
 	// 初始化es
 	InitES()
 	// 捕获启动时错误

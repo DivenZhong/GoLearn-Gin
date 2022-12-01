@@ -70,6 +70,64 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/recipe/add": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "菜谱"
+                ],
+                "summary": "添加新的菜谱",
+                "parameters": [
+                    {
+                        "description": "json数据",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.RecipeParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 0,\"msg\": \"请求成功\", \"data\": {}}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Recipe"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/recipe/list": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "菜谱"
+                ],
+                "summary": "获取菜谱列表",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 0,\"msg\": \"请求成功\", \"data\": {}}",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Recipe"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/user/detail": {
             "get": {
                 "consumes": [
@@ -84,7 +142,7 @@ const docTemplate = `{
                 "summary": "查询用户信息",
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "{\"code\": 0,\"msg\": \"请求成功\", \"data\": {}}",
                         "schema": {
                             "type": "string"
                         }
@@ -160,6 +218,38 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "model.Recipe": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ingredients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "instruction": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
         "model.User": {
             "type": "object",
             "properties": {
@@ -222,6 +312,33 @@ const docTemplate = `{
                 "phone": {
                     "description": "手机",
                     "type": "string"
+                }
+            }
+        },
+        "request.RecipeParam": {
+            "type": "object",
+            "properties": {
+                "ingredients": {
+                    "description": "成分",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "instruction": {
+                    "description": "说明书",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "菜谱名称",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "标签列表",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },

@@ -1,4 +1,25 @@
 definitions:
+  model.Recipe:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+      ingredients:
+        items:
+          type: string
+        type: array
+      instruction:
+        type: string
+      name:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      updatedAt:
+        type: string
+    type: object
   model.User:
     properties:
       createdAt:
@@ -41,6 +62,25 @@ definitions:
       phone:
         description: 手机
         type: string
+    type: object
+  request.RecipeParam:
+    properties:
+      ingredients:
+        description: 成分
+        items:
+          type: string
+        type: array
+      instruction:
+        description: 说明书
+        type: string
+      name:
+        description: 菜谱名称
+        type: string
+      tags:
+        description: 标签列表
+        items:
+          type: string
+        type: array
     type: object
   request.RegisterParam:
     properties:
@@ -98,6 +138,43 @@ paths:
       summary: 验证redis
       tags:
       - 测试验证
+  /v1/recipe/add:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: json数据
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.RecipeParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            $ref: '#/definitions/model.Recipe'
+      summary: 添加新的菜谱
+      tags:
+      - 菜谱
+  /v1/recipe/list:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
+          schema:
+            items:
+              $ref: '#/definitions/model.Recipe'
+            type: array
+      summary: 获取菜谱列表
+      tags:
+      - 菜谱
   /v1/user/detail:
     get:
       consumes:
@@ -106,7 +183,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: OK
+          description: '{"code": 0,"msg": "请求成功", "data": {}}'
           schema:
             type: string
       summary: 查询用户信息

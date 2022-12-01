@@ -14,6 +14,7 @@ type app struct {
 type ServerConfig struct {
 	App     app     `yaml:"app"`
 	Mysql   mysql   `yaml:"mysql"`
+	MongoDb mongoDb `yaml:"mongoDb"`
 	Log     log     `yaml:"log"`
 	Jwt     jwt     `yaml:"jwt"`
 	Redis   redis   `yaml:"redis"`

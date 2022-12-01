@@ -21,6 +21,8 @@ func RegisterRouters(engine *gin.Engine) {
 	router.InitUserRouter(engine)
 	// 测试路由
 	router.InitTestRouter(engine)
+	// 注册菜谱路由
+	router.InitRecipeRouter(engine)
 	// 注册es路由
 	router.InitESRouter(engine)
 	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
