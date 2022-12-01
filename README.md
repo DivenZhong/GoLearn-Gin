@@ -82,6 +82,7 @@ zap 实现高性能的日志组件：
     3.通过 sync.Pool实现对象复用，避免竞争
 	4.日志级别逻辑判断拦截，避免一切不必要的开销	
 testify:单元测试
+mongoDB:文档数据库
 redis：内存缓存
 elastic：日志收集
 JWT ：Token令牌授权和认证
