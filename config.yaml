@@ -16,7 +16,7 @@ log:
     compress: true #是否压缩/归档旧文件
 mysql:
   enable: true
-  host: 127.0.0.1
+  host: host.docker.internal
   port: 3306
   user: root
   password: go123#
@@ -44,14 +44,14 @@ jwt:
   expire: 6h # 有效时间，值如: 30s|10min|1h
 mongoDb:
   enable: true
-  host: 127.0.0.1
+  host: host.docker.internal
   port: 27017
   user: root
   password: go123#
   database: gin_demo
 redis:
   enable: true
-  addr: 127.0.0.1:6379
+  addr: host.docker.internal:6379
   password: # 密码(可为空)
   defaultDB: 0 # 默认DB
   dialTimeout: 5s #redis连接超时时间.默认5s
